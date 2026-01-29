@@ -1,0 +1,24 @@
+{
+  "name": "maygourmet",
+  "version": "1.0.0",
+  "description": "MayGourmet est une plateforme de restaurant en ligne, il permet d'afficher les menus, les plats et passer la commande.",
+  "main": "serveur.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vnci12/maygourmet.git"
+  },
+  "keywords": [],
+  "author": "Mohamed Ahamada Yowane",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vnci12/maygourmet/issues"
+  },
+  "homepage": "https://github.com/vnci12/maygourmet#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
