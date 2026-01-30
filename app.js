@@ -12,6 +12,9 @@ app.set('views', './views')
 //je precise que nous utilison ejs pour les vues
 app.set('view engine', 'ejs');
 
+//je précise que j'utilise le dossier 'public' qui contient les fichier statics
+app.use(express.static('public'));
+
 //route get pour /
 app.get('/', (req, res) => {
     //message à afficher: Bienvenue chez MayGourmet !
