@@ -6,6 +6,12 @@ const express = require('express');
 */
 const app = express();
 
+//je précises que les vues sont dans le dossier views
+app.set('views', './views')
+
+//je precise que nous utilison ejs pour les vues
+app.set('view engine', 'ejs');
+
 //route get pour /
 app.get('/', (req, res) => {
     //message à afficher: Bienvenue chez MayGourmet !
@@ -22,27 +28,35 @@ app.get('/', (req, res) => {
 app.get('/api/acceuil', (req, res) => {
     console.log('Requête reçue sur /api/acceuil');
 
-    //contenue qui sera afficher dans le navigateur
-	res.write("<p>Bienvenue sur l'API MayGourmet !</p>");
-
-    //type d'encodage
-    res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-
-    //fin de la réponse
-    res.end();
+    res.render('accueil')
 
 });
 
 app.get('/api/equipe', (req, res) => {
     console.log('Requête reçue sur /api/equipe');
+
+    res.render('equipe')
+
     //type d'encodage
-    res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+    //res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
 
     //contenue qui sera afficher dans le navigateur
-    res.write("<p>Voici l'équipe de MayGourmet !</p>");
+    //res.write("<p>Voici l'équipe de MayGourmet !</p>");
 
     //fin de la réponse
-    res.end();
+    //res.end();
+});
+
+app.get('/api/plats', (req, res) => {
+    console.log('Requête recu sur /api/plats');
+
+    res.render('plats')
+});
+
+app.get('/api/contact', (req, res) => {
+    console.log('Requête recu sur /api/contact');
+
+    res.render('contacts')
 });
 
 
