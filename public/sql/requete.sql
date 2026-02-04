@@ -38,3 +38,24 @@ VALUES ("ANZIZE","AHMED","anzizeahmed@gamil.com","0639123456","Cuisinier","35 av
 
 -- supprimer une ligne dans le tableau
 delete from equipe where id = 5;
+
+-- table fournisseur
+CREATE TABLE fournisseur (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nom VARCHAR(155) NOT NULL,
+    prenom VARCHAR(155) NOT NULL,
+    mail VARCHAR(100), -- ce champ est facultatif
+    telephone VARCHAR(100) NOT NULL,
+    adress_postale VARCHAR(255),
+    presentation_produit VARCHAR(255)
+);
+
+-- ajout fournisseur
+INSERT INTO fournisseur (nom, prenom, mail, telephone, adress_postale, presentation_produit)
+VALUES ("IBRAHIM","HAMZA","zanfaranehamza@gmail.com","0639123456","4 rue de la mosquée 97600 Mamoudzou","Viande de beouf, viande de mouton et viande de chevre.");
+
+INSERT INTO fournisseur (nom, prenom, mail, telephone, adress_postale, presentation_produit)
+VALUES
+("IBRAHIM","HAMZA","zanfaranehamza@gmail.com","0639123456","4 rue de la mosquée 97600 Mamoudzou","nkassa."),
+("IBRAHIM","HAMZA","zanfaranehamza@gmail.com","0639123456","4 rue de la mosquée 97600 Mamoudzou","landra."),
+("","ahmed","zanfaranehamza@gmail.com","0639123456","4 rue de la mosquée 97665","viande de poulet, dinde, canard");
