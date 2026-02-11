@@ -20,6 +20,8 @@
   "homepage": "https://github.com/vnci12/maygourmet#readme",
   "dependencies": {
     "ejs": "^4.0.1",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "express-myconnection": "^1.0.4",
+    "mysql2": "^3.17.0"
   }
 }
