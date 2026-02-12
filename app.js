@@ -19,7 +19,7 @@ const app = express();
 const optionsConnexionBaseDeDonnees = {
     host: "localhost",
     user: "root",
-    password: "Bouboule97615",
+    password: "Bouboule97615#",
     database: "maygourmet",
     port: 3306
 };
@@ -61,7 +61,23 @@ app.get('/api/acceuil', (req, res) => {
 app.get('/api/equipe', (req, res) => {
     console.log('Requête reçue sur /api/equipe');
 
-    res.render('equipe')
+    //1. Je me connecte 
+    req.getConnection((erreur, connection) => {
+        if(erreur) {//je vérifie s'il y a une erreur lors de la connexion à la base de donnée
+            console.log(erreur);
+        } else{
+            connection.query("SELECT * FROM equipe", [], (err, resultatEquipe) => {
+                if (err) {
+                    console.log("Erreur dans la requê SQL SELECT");
+                } else {
+                    console.log("mon équipe : ", resultatEquipe);
+
+                    res.render("equipe", {resultatEquipe});
+                }
+            });
+        }
+    })
+
 
     //type d'encodage
     //res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
