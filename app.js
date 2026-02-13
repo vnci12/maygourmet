@@ -14,6 +14,8 @@ const myConnection = require('express-myconnection');
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //je configure les elements attendus pour me connecter à MySQL
 const optionsConnexionBaseDeDonnees = {
@@ -58,6 +60,7 @@ app.get('/api/acceuil', (req, res) => {
 
 });
 
+//je crée une route GET pour l'API /api/equipe qui va me permettre d'afficher les membres de mon équipe
 app.get('/api/equipe', (req, res) => {
     console.log('Requête reçue sur /api/equipe');
 
@@ -87,6 +90,18 @@ app.get('/api/equipe', (req, res) => {
 
     //fin de la réponse
     //res.end();
+});
+
+/**
+ * j'ajoute un fournisseur dans la table fournisseur, poue cela je crée une route POST pour l'API /api/fournisseur
+ */
+app.post('/api/fournisseur', (req, res) => {
+    console.log("Corps de la requête : ", req.body);
+});
+
+//je crée une route GET pour l'API /api/fournisseur qui va me permettre d'afficher les fournisseurs de mon restaurant
+app.get('/api/fournisseur', (req, res) => {
+    res.render('fournisseur');
 });
 
 app.get('/api/plats', (req, res) => {
