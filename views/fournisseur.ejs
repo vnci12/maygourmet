@@ -10,26 +10,35 @@
      <%- include('navbar') -%>
 
     <div class="container">
-     <h2>Fournisseurs</h2>
+        <!-- Titre de la section fournisseurs -->
+        <h2>Fournisseurs</h2>
+        <!-- Formulaire d'ajout d'un nouveau fournisseur -->
         <form action="/api/fournisseur" method="POST">
+            <!-- Champ pour le nom du fournisseur -->
             <label for="nomFournisseur">Nom: </label>
             <input type="text" id="nomFournisseur" name="nomFournisseur" placeholder="Nom du Fournisseur">
 
+            <!-- Champ pour le nom du responsable à contacter -->
             <label for="responsableFournisseur">Responsable: </label>
             <input type="text" id="responsableFournisseur" name="responsableFournisseur" placeholder="Nom du Responsable a contacter">
 
+            <!-- Champ pour l'adresse mail du fournisseur -->
             <label for="emailFournisseur">Mail: </label>
             <input type="email" id="emailFournisseur" name="emailFournisseur" placeholder="Mail du Fournisseur">
 
+            <!-- Champ pour le téléphone du fournisseur -->
             <label for="telephoneFournisseur">Téléphone: </label>
             <input type="text" id="telephoneFournisseur" name="telephoneFournisseur" placeholder="Téléphone du Fournisseur">
 
+            <!-- Champ pour l'adresse postale du fournisseur -->
             <label for="adresseFournisseur">Adresse postale: </label>
             <input type="text" id="adresseFournisseur" name="adresseFournisseur" placeholder="Adresse postale du Fournisseur">
 
+            <!-- Champ pour une présentation ou description du fournisseur -->
             <label for="presentationFournisseur">Présentation fournisseur: </label>
             <textarea id="presentationFournisseur" name="presentationFournisseur" placeholder="Dites-nous en plus sur votre fournisseur" style="height:200px;"></textarea>
 
+            <!-- Bouton pour soumettre le formulaire d'ajout -->
             <input type="submit" value="Ajouter le fournisseur"> 
         </form>
     </div>

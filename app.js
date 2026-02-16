@@ -97,6 +97,10 @@ app.get('/api/equipe', (req, res) => {
  */
 app.post('/api/fournisseur', (req, res) => {
     console.log("Corps de la requête : ", req.body);
+    console.log(req.body.nomFournisseur);
+    console.log(req.body.adresseFournisseur);
+    console.log(req.body.telephoneFournisseur);
+    console.log(req.body.emailFournisseur);
 });
 
 //je crée une route GET pour l'API /api/fournisseur qui va me permettre d'afficher les fournisseurs de mon restaurant
