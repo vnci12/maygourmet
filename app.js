@@ -97,12 +97,41 @@ app.get('/api/equipe', (req, res) => {
  */
 app.post('/api/fournisseur', (req, res) => {
     console.log("Corps de la requête : ", req.body);
-    console.log(req.body.nomFournisseur);
-    console.log(req.body.adresseFournisseur);
-    console.log(req.body.telephoneFournisseur);
-    console.log(req.body.emailFournisseur);
-});
+    const nomFournisseur = req.body.nomFournisseur;
+    const responsableFournisseur = req.body.responsableFournisseur;
+    const emailFournisseur = req.body.emailFournisseur;
+    const telephoneFournisseur = req.body.telephoneFournisseur;
+    const adresseFournisseur = req.body.adresseFournisseur;
+    const presentationFournisseur = req.body.presentationFournisseur;
 
+    const requeteSQL = "INSERT INTO fournisseur (nom, responsable, adresse, telephone, email, presentation) VALUES (?, ?, ?, ?, ?, ?)";
+
+    const ordreChamps = [nomFournisseur, responsableFournisseur, adresseFournisseur, telephoneFournisseur, emailFournisseur, presentationFournisseur];
+
+
+    console.log(req.body.nomFournisseur);
+    console.log(req.body.responsableFournisseur);
+    console.log(req.body.emailFournisseur);
+    console.log(req.body.telephoneFournisseur);
+    console.log(req.body.adresseFournisseur);
+    console.log(req.body.presentationFournisseur);
+
+    //je me connecte à la base de données pour exécuter la requete SQL d'insertion
+    req.getConnection((erreur, connection) => {
+        if(erreur) {
+            console.log("Erreur de connexion à la base de données : ", erreur);
+        } else {
+            connection.query(requeteSQL, ordreChamps, (err, nouveauFournisseur) => {
+                if(err) {
+                    console.log("Erreur d'ajout de fournisseur : ", err);
+                } else {
+                    console.log("Fournisseur ajouté avec succès !");
+                    res.status(300).json('/accueil');
+                }
+            });
+        }
+    });
+});
 //je crée une route GET pour l'API /api/fournisseur qui va me permettre d'afficher les fournisseurs de mon restaurant
 app.get('/api/fournisseur', (req, res) => {
     res.render('fournisseur');
