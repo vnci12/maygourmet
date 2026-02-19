@@ -92,6 +92,30 @@ app.get('/api/equipe', (req, res) => {
     //res.end();
 });
 
+//API Route pour supprimer un membre de l'équipe
+//Méthode : DELETE
+//Exemple : localhost:3003/api/equipe/1 (pour supprimer le membre d'équipe avec l'id 1)
+app.delete('/api/equipe/:id', (req, res) => {
+    const idMembreEquipe = req.params.id;
+    const queryDelete = "DELETE FROM equipe WHERE id = ?";
+
+    req.getConnection((erreur, connection) => {
+        if(erreur) {
+            console.log("Erreur suppression equipe : ", erreur);
+        } else {
+            connection.query(queryDelete, [idMembreEquipe], (err, resultat) => {
+                if(err) {
+                    console.log("Erreur requête suppression equipe : ", err);
+                } else {
+                    console.log("Membre d'équipe supprimé avec succès !");
+                    res.status(200).redirect('/api/equipe');
+                }
+            });
+        }
+    });
+});
+
+
 /**
  * j'ajoute un fournisseur dans la table fournisseur, poue cela je crée une route POST pour l'API /api/fournisseur
  */
@@ -104,7 +128,7 @@ app.post('/api/fournisseur', (req, res) => {
     const adresseFournisseur = req.body.adresseFournisseur;
     const presentationFournisseur = req.body.presentationFournisseur;
 
-    const requeteSQL = "INSERT INTO fournisseur (nom, responsable, adresse, telephone, email, presentation) VALUES (?, ?, ?, ?, ?, ?)";
+    const requeteSQL = "INSERT INTO fournisseur (nom, responsable, adress_postale, telephone, mail, presentation_fournisseur) VALUES (?, ?, ?, ?, ?, ?)";
 
     const ordreChamps = [nomFournisseur, responsableFournisseur, adresseFournisseur, telephoneFournisseur, emailFournisseur, presentationFournisseur];
 
@@ -124,9 +148,11 @@ app.post('/api/fournisseur', (req, res) => {
             connection.query(requeteSQL, ordreChamps, (err, nouveauFournisseur) => {
                 if(err) {
                     console.log("Erreur d'ajout de fournisseur : ", err);
+                    res.status(500).json({ message: "Erreur lors de l'ajout du fournisseur." });
                 } else {
                     console.log("Fournisseur ajouté avec succès !");
-                    res.status(300).json('/accueil');
+                    // 201 = Created, on peut aussi renvoyer l'objet créé ou une URL de redirection
+                    res.status(200).redirect('/api/accueil');
                 }
             });
         }
