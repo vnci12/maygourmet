@@ -128,15 +128,16 @@ nav a:hover {
 }
 
 h1, h2, h3 {
-    color: #388e3c;
+    color: black;
     margin-top: 30px;
+    text-align: center;
 }
 
 .container {
     max-width: 1200px;
     margin: 40px auto;
     padding: 20px;
-    background: linear-gradient(135deg, #015eff 0%, #8800ff 50%, #e8f5e9 100%);
+    background: linear-gradient(135deg, #4ed38a 15%, #8800ff 50%, #45b24e 95%);
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(56, 142, 60, 0.08);
 }
