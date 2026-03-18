@@ -44,6 +44,10 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
+    background-image: url(/image/dawid-tkocz-u6vD26IMvSK-unsplash.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 header, nav {
@@ -98,4 +102,19 @@ footer {
     text-align: center;
     padding: 16px 0;
     margin-top: 40px;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 0.35; /* Ajuste la transparence ici */
 }

@@ -116,6 +116,39 @@ app.delete('/api/equipe/:id', (req, res) => {
     });
 });
 
+/**
+ * API pour ajouter un membre de l'équipe, méthode POST, route : /api/equipe
+ */
+app.post('/api/equipe', (req, res) => {
+    const nomMembre = req.body.nomMembre;
+    const prenomMembre = req.body.prenomMembre;
+    const mailMembre = req.body.mailMembre;
+    const telephoneMembre = req.body.telephone;
+    const posteMembre = req.body.posteMembreEquipe;
+    const adress_postaleMembre = req.body.adress_postaleMembre;
+    const presentationMembre = req.body.presentationMembre;
+    const date_recrutementMembre = req.body.date_recrutementMembre;
+    const queryInsert = "INSERT INTO equipe (nom, prenom, mail, telephone, poste, adress_postale, presentation, date_recrutement) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    const ordreChamps = [nomMembre, prenomMembre, mailMembre, telephoneMembre, posteMembre, adress_postaleMembre, presentationMembre, date_recrutementMembre];
+
+    req.getConnection((erreur, connection) => {
+        if(erreur) {
+            console.log("Erreur ajout membre equipe : ", erreur);
+            return res.status(500).json({ message: "Erreur de connexion à la base de données." });
+        } else {
+            connection.query(queryInsert, ordreChamps, (err, nouveauMembre) => {
+                if(err) {
+                    console.log("Erreur d'ajout de membre d'équipe : ", err);
+                    return res.status(500).json({ message: "Erreur lors de l'ajout du membre d'équipe." });
+                } else {
+                    console.log("Membre d'équipe ajouté avec succès !");
+                    return res.redirect('/api/equipe');
+                }
+            });
+        }
+    });
+});
+
 
 /**
  * j'ajoute un fournisseur dans la table fournisseur, poue cela je crée une route POST pour l'API /api/fournisseur

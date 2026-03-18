@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>equipe</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/modale.css">
     <script src="/js/equipesupprimer.js"></script>
 </head>
 
@@ -15,6 +16,99 @@
      <%- include('navbar') -%>
 
     <h2>Mon équipe Maygourmet</h2>
+    
+    <div class="row">
+        <button id="myBtn">Ouvrir le modal</button>
+
+        <div id="myModal" class="modal">
+        <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <h2>Ajouter nouveau membre</h2>
+                </div>
+                <div class="modal-body">
+                    <p>je suis dans le modal</p>
+                    <p>Formulaire d'ajout de membre</p>
+                    <!-- Formulaire d'ajout d'un nouveau membre -->
+                    <div class="container">
+                        <form action="/api/equipe" method="POST">
+                            <!-- ligne 1 du formulaire -->
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="nomMembreEquipe">Nom: </label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" id="nomMembreEquipe" name="nomMembreEquipe" placeholder="Nom du membre de l'équipe" required>
+                                </div>
+                            </div>
+                            <!-- ligne 2 du formulaire -->
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="prenomMembreEquipe">Prénom: </label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" id="prenomMembreEquipe" name="prenomMembreEquipe" placeholder="Prénom du membre de l'équipe" required>
+                                </div>
+                            </div>
+                            <!-- ligne 3 du formulaire -->
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="mailMembreEquipe">Mail: </label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="email" id="mailMembreEquipe" name="mailMembreEquipe" placeholder="Adresse mail" required>
+                                </div>
+                            </div>
+                            <!-- ligne 4 du formulaire -->
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="telephoneMembreEquipe">Numéro de Téléphone: </label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" id="telephoneMembreEquipe" name="telephoneMembreEquipe" placeholder="Numéro de téléphone" required>
+                                </div>
+                            </div>
+                            <!-- ligne 5 du formulaire -->
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="posteMembreEquipe">Poste: </label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" id="posteMembreEquipe" name="posteMembreEquipe" placeholder="Poste du membre" required>
+                                </div>
+                            </div>
+                            <!-- ligne 6 du formulaire -->
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="adress_postaleMembreEquipe">Adresse postale: </label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" id="adress_postaleMembreEquipe" name="adress_postaleMembreEquipe" placeholder="Adresse postale du membre de l'équipe">
+                                </div>
+                            </div>
+                            <!-- ligne 7 du formulaire -->
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="presentationMembreEquipe">Présentation: </label>
+                                </div>
+                                <div class="col-75">
+                                    <textarea id="presentationMembreEquipe" name="presentationMembreEquipe" placeholder="Dites-nous en plus sur votre membre de l'équipe" style="height:200px;"></textarea>
+                                </div>
+                            </div>
+                            <!-- ligne 8 du formulaire -->
+                            <button type="submit" id="btnEnregistrer">Enregistrer</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <% resultatEquipe.forEach(resultat => { %>
         <div class="card">
             <img src="/image/griffin-wooldridge-yzUoueMqS8A-unsplash.jpg" alt="" class="team">
@@ -26,4 +120,31 @@
         </div>
     <% }) %>
 </body>
+<script>
+    // Récupère la fenêtre modale
+var modal = document.getElementById("myModal");
+
+// Récupère le bouton qui ouvre la modale
+var btn = document.getElementById("myBtn");
+
+// Récupère l'élément <span> qui ferme la modale
+var span = document.getElementsByClassName("close")[0];
+
+// Lorsque l'utilisateur clique sur le bouton, ouvre la modale
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// Lorsque l'utilisateur clique sur <span> (x), ferme la modale
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// Lorsque l'utilisateur clique en dehors de la modale, la ferme
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 </html>
