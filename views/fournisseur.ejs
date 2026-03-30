@@ -43,5 +43,26 @@
             <input type="submit" value="Ajouter le fournisseur"> 
         </form>
     </div>
+
+    <div class="fournisseurs-list">
+        <!-- Affichage de la liste des fournisseurs existants -->
+        <%resultatFournisseur.forEach(resultat => { %>
+            <div class="card">
+                <div class="container">
+                    <h4><%= resultat.nom %></h4>
+                    <h5><p>Responsable: <%= resultat.responsable %></p></h5>
+                    <h6><p>Mail: <%= resultat.mail %></p></h6>
+                    <h6><p>Téléphone: <%= resultat.telephone %></p></h6>
+                    <h6><p>Adresse: <%= resultat.adresse %></p></h6>
+                    <h6><p>Présentation: <%= resultat.presentation %></p></h6>
+
+                    <!-- Bouton pour supprimer un fournisseur -->
+                    <input type="button" value="Supprimer" onclick="supprimer('<%= resultat.id %>')">
+                    <!-- Bouton pour modifier un fournisseur, en passant les informations actuelles du fournisseur à la fonction de modification -->
+                    <input type="button" value="Modifier" onclick="modifier('<%= resultat.id %>', '<%= resultat.nom %>', '<%= resultat.responsable %>', '<%= resultat.mail %>', '<%= resultat.telephone %>', '<%= resultat.adresse %>', '<%= resultat.presentation %>')">
+                </div>
+            </div>
+        <% }) %>
+    </div>
 </body>
 </html>

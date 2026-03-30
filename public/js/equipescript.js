@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 function supprimer(id) {
     const routeComplete = '/api/equipe/' + id;
     fetch(
@@ -10,36 +12,48 @@ function supprimer(id) {
             (error) => console.log(error)
     )
 };
-/*
-function modifier(id, nom, prenom, poste, mail, telephone, adress_postale, presentation, date_recrutement) {
-    // Implementation for modifying a team member
-        const routeComplete = '/api/equipe/' + id;
-        const data = {
-            id: id,
-            nomMembreEquipe: nom,
-            prenomMembreEquipe: prenom,
-            posteMembreEquipe: poste,
-            mailMembreEquipe: mail,
-            telephoneMembreEquipe: telephone,
-            adress_postaleMembreEquipe: adress_postale,
-            presentationMembreEquipe: presentation,
-            date_recrutementMembreEquipe: date_recrutement
-        };
-        fetch(
-            routeComplete, {
-                method: "PUT",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            }
-        ).then(
-                (response) => response.json()
-                
-        ).then(
-                (donnee) => window.location.href = donnee.routeAcceuil
-        ).catch(
-                (error) => console.log(error)
-        )
 
-}*/
+//fonction supprimer plats
+//cette fonction me permetra de supprimer un plat depuis ma base de données en utilisant l'id du plat que je souhaite supprimer
+function supprimerPlat(id) {
+    const routeComplete ='/api/plats/' + id;
+    fetch(
+        routeComplete, { method: "DELETE" }
+    ).then(
+        (response) => response.json()
+    ).then(
+        (donnee) => window.location.href = donnee.routePlats
+    ).catch(
+        (error) => console.log(error)
+    )
+};
+
+
+
+//fonction qui me permettra de modifier une commande depuis ma base de données en utilisant l'id de la commande que je souhaite modifier
+function modifier(id) {
+    const routeComplete = '/api/equipe/' + id;
+    fetch(
+        routeComplete, { method: "PUT" }
+    ).then(
+            (response) => response.json()
+    ).then(
+            (donnee) => window.location.href = donnee.routeAcceuil
+    ).catch(
+            (error) => console.log(error)
+    )
+};
+
+//fonction qui me permettra de modifier un plat depuis ma base de données en utilisant l'id du plat que je souhaite modifier
+/*function modifierPlat(id) {
+    const routeComplete = '/api/plats/' + id;
+    fetch(
+        routeComplete, { method: "PUT" }
+    ).then(
+            (response) => response.json()
+    ).then(
+            (donnee) => window.location.href = donnee.routePlats
+    ).catch(
+            (error) => console.log(error)
+    )
+};*/

@@ -82,3 +82,21 @@ CREATE TABLE produit(
 
 insert into produit (id_produit, nom, presentation, prix, origin, categorie, disponibilite, type_culture, id_fournisseur)
 VALUES(1, "Kanga Passam", "magasin si qui ce situe a passamayiti prés du college, Vente de fruit/kg de mayotte.", 5, "Mayotte", "Fruit", 0, "agricole", 1);
+
+CREATE TABLE plat (
+    id_plat INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nom VARCHAR(100) NOT NULL,
+    presentation VARCHAR(155),
+    prix INT NOT NULL,
+    categorie VARCHAR(30),
+    disponibilte Boolean DEFAULT False
+);
+
+insert into plat (id_plat, nom, presentation, prix, categorie, disponibilite)
+VALUES(1, "Mkatra Foutra", "Plat traditionnel de Mayotte, accompagné de sauce de viande.", 10, "Plat principal", 1);
+
+insert into plat (id_plat, nom, presentation, prix, categorie, disponibilite)
+VALUES(2, "Pilao", "Plat traditionnel de Mayotte, fait à base de riz jaune qui est mélangé avec des épices et une sauce de viande.", 10, "Plat principal", 1);
+
+insert into plat (id_plat, nom, presentation, prix, categorie, disponibilite)
+VALUES(3, "Bœuf au oignos", "Plat traditionnel de Mayotte, fait à base de viande de bœuf et d'une sauce à base d'oignons, accompagnée de riz blanc/lentilles ou frites.", 14, "Plat du jour", 1);

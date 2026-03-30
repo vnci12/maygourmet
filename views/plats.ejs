@@ -12,5 +12,18 @@
      <%- include('navbar') -%>
 
     <h2>Voici les plats que nous proposons</h2>
+    
+    <%resultatPlat.forEach(resultat => { %>
+        <div class="card">
+            <div class="container">
+                <h4><%= resultat.nom %></h4>
+                <h5><p><%= resultat.presentation %></p></h5>
+                <h6><p>Prix: <%= resultat.prix %> €</p></h6>
+
+                <input type="button" value="Supprimer" onclick="supprimer('<%= resultat.id %>')">
+            </div>
+        </div>
+    <% }) %>
+
 </body>
 </html>

@@ -250,19 +250,120 @@ app.post('/api/fournisseur', (req, res) => {
         }
     });
 });
+
+//je crée une route GET pour l'API /api/fournisseur qui va me permettre d'afficher les fournisseurs de mon restaurant
+app.get('/api/fournisseur', (req, res) => {
+    console.log('Requête reçue sur /api/fournisseur');
+    //je me connecte à la base de données pour récupérer les fournisseurs de mon restaurant
+    req.getConnection((erreur, connection) => {
+        if(erreur) {
+            //je vérifie s'il y a une erreur lors de la connexion à la base de donnée
+            console.log('Erreur de connexion à la base de données : ', erreur);
+        } else {
+            //je prépare la requête SQL pour récupérer les fournisseurs de mon restaurant
+            const requeteSQL = "SELECT * FROM fournisseur";
+            //je exécute la requête SQL pour récupérer les fournisseurs de mon restaurant
+            connection.query(requeteSQL, (err, resultatFournisseur) => {
+                if(err) {
+                    console.log('Erreur lors de la récupération des fournisseurs : ', err);
+                    res.status(500).json({ message: "Erreur lors de la récupération des fournisseurs." });
+                } else {
+                    console.log('Fournisseurs récupérés avec succès !');
+                    res.render('fournisseur', { resultatFournisseur });
+                }
+            });
+        }
+    });
+});
+
+//API Route pour supprimer un fournisseur
+//Méthode : DELETE
+//Exemple : localhost:3003/api/fournisseur/1 (pour supprimer le fournisseur avec l'id 1)
+app.delete('/api/fournisseur/:id', (req, res) => {
+    const idFournisseur = req.params.id;
+    const queryDelete = "DELETE FROM fournisseur WHERE id = ?";
+    //je me connecte à la base de données pour exécuter la requete SQL de suppression
+    req.getConnection((erreur, connection) => {
+        //je vérifie s'il y a une erreur lors de la connexion à la base de donnée
+        if(erreur) {
+            console.log("Erreur suppression fournisseur : ", erreur);
+        } else {
+            //je exécute la requete SQL de suppression du fournisseur avec l'id spécifié
+            connection.query(queryDelete, [idFournisseur], (err, resultat) => {
+                //je vérifie s'il y a une erreur lors de l'exécution de la requete SQL de suppression              
+                 if(err) {
+                    console.log("Erreur requête suppression fournisseur : ", err);
+                } else {
+                    console.log("Fournisseur supprimé avec succès !");
+                    //res.status(200).redirect('/api/fournisseur');
+                    res.status(200).json({ routeAcceuil: "/api/fournisseur" });
+                }
+            });
+        }
+    });
+});
+
+
+
 //je crée une route GET pour l'API /api/fournisseur qui va me permettre d'afficher les fournisseurs de mon restaurant
 app.get('/api/fournisseur', (req, res) => {
     res.render('fournisseur');
 });
 
-//je crée une route GET pour l'API /api/plats qui va me permettre d'afficher les plats proposés par mon restaurant
-app.get('/api/plats', (req, res) => {
-    console.log('Requête recu sur /api/plats');
 
-    res.render('plats')
+//je crée une route GET pour l'API /api/plats qui va me permettre d'afficher les plats proposés par mon restaurant
+//je crée une route GET pour l'API /api/contact qui va me permettre d'afficher les coordonnées de contact de mon restaurant
+app.get('/api/plats', (req, res) => {
+    //1. Je me connecte à la base de données pour récupérer les plats proposés par mon restaurant
+    req.getConnection((erreur, connection) => {
+        if(erreur) {
+            //je vérifie s'il y a une erreur lors de la connexion à la base de donnée
+            console.log('Erreur de connexion à la base de données : ', erreur);
+        } else {
+            //2. Je prépare la requête SQL pour récupérer les plats proposés par mon restaurant
+            const requeteSQL = "SELECT * FROM plat";
+            //3. Je exécute la requête SQL pour récupérer les plats proposés par mon restaurant
+            connection.query(requeteSQL, (err, resultatPlat) => {
+                if(err) {
+                    console.log('Erreur lors de la récupération des plats : ', err);
+                    res.status(500).json({ message: "Erreur lors de la récupération des plats." });
+                } else {
+                    console.log('Plats récupérés avec succès !');
+                    res.render('plats', { resultatPlat });
+                }
+            });
+        }
+    });
 });
 
-//je crée une route GET pour l'API /api/contact qui va me permettre d'afficher les coordonnées de contact de mon restaurant
+//API Route pour supprimer un plats
+//Méthode : DELETE
+//Exemple : localhost:3003/api/plats/1 (pour supprimer le plat avec l'id 1)
+app.delete('/api/plats/:id', (req, res) => {
+    const idPlat = req.params.id;
+    const queryDelete = "DELETE FROM plat WHERE id = ?";
+    //je me connecte à la base de données pour exécuter la requete SQL de suppression
+    req.getConnection((erreur, connection) => {
+        //je vérifie s'il y a une erreur lors de la connexion à la base de donnée
+        if(erreur) {
+            console.log("Erreur suppression plat : ", erreur);
+        } else {
+            //je exécute la requete SQL de suppression du plat avec l'id spécifié
+            connection.query(queryDelete, [idPlat], (err, resultat) => {
+                //je vérifie s'il y a une erreur lors de l'exécution de la requete SQL de suppression              
+                 if(err) {
+                    console.log("Erreur requête suppression plat : ", err);
+                } else {
+                    console.log("Plat supprimé avec succès !");
+                    //res.status(200).redirect('/api/plats');
+                    res.status(200).json({ routeAcceuil: "/api/plats" });
+                }
+            });
+        }
+    });
+});
+
+
 app.get('/api/contact', (req, res) => {
     console.log('Requête recu sur /api/contact');
 
