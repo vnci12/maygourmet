@@ -10,7 +10,7 @@ CREATE TABLE equipe (
     nom VARCHAR(155) NOT NULL,
     prenom VARCHAR(155) NOT NULL,
     mail VARCHAR(100), -- ce champ est facultatif
-    telephone VARCHAR(100) NOT NULL,
+    telephone VARCHAR(100) NOT NULL,-- ce champ est obligatoire
     poste VARCHAR(80) NOT NULL,
     adress_postale VARCHAR(255),
     presentation VARCHAR(255),

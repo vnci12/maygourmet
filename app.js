@@ -27,8 +27,8 @@ const optionsConnexionBaseDeDonnees = {
 };
 
 /**
- * Middleware pour se connecter à la BDD MySQL "pool" est
- */
+ * Middleware pour se connecter à la BDD MySQL "pool" est une méthode de connexion qui permet de réutiliser les connexions à la base de données au lieu d'en créer une nouvelle à chaque requête, ce qui améliore les performances de l'application.
+*/
 app.use(myConnection(mysql2, optionsConnexionBaseDeDonnees, "pool"));
 
 //je précises que les vues sont dans le dossier views
