@@ -79,7 +79,7 @@ app.get('/api/equipe', (req, res) => {
                 }
             });
         }
-    })
+    });
 
 
     //type d'encodage
